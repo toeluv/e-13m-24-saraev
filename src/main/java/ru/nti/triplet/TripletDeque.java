@@ -1,4 +1,4 @@
-package ru.nti.multiagencymagic;
+package ru.nti.triplet;
 
 import java.util.*;
 
@@ -286,6 +286,21 @@ public class TripletDeque<E> implements Containerable, Deque<E> {
     return container != null ? container.array : null;
   }
 
+  @Override
+  public void clear() {
+    Container current = first;
+    while (current != null) {
+      Container next = current.next;
+      current.array = null;
+      current.next = null;
+      current.previous = null;
+      current = next;
+    }
+    this.first = new Container();
+    this.last = first;
+    this.queueSize = 0;
+  }
+
   private class Container {
     private E[] array;
     private Container next;
@@ -390,9 +405,6 @@ public class TripletDeque<E> implements Containerable, Deque<E> {
   public boolean retainAll(Collection<?> c) {
     return false;
   }
-
-  @Override
-  public void clear() {}
 
   @Override
   public boolean containsAll(Collection<?> c) {
