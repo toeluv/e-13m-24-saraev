@@ -308,7 +308,6 @@ public class TripletDeque<E> implements Containerable, Deque<E> {
         private Container next;
         private Container previous;
         private int elementsCount;
-        private static final int CONTAINER_SIZE = 5;
 
         public Container() {
             this.array = (E[]) new Object[CONTAINER_SIZE];
